@@ -1,6 +1,6 @@
 {
   "name": "mock-server",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Node js rest mock server with expressjs",
   "main": "index.js",
   "scripts": {
@@ -17,9 +17,8 @@
     "url": "https://github.com/georgybu/mock-server/issues"
   },
   "homepage": "https://github.com/georgybu/mock-server#readme",
-  "devDependencies": {
-    "body-parser": "^1.18.2",
-    "express": "^4.16.2",
-    "morgan": "^1.9.0"
+  "dependencies": {
+    "express": "4.17.1",
+    "cors": "2.8.5"
   }
 }

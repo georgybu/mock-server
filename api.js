@@ -1,30 +1,21 @@
-var router = require('express').Router();
+const router = require('express').Router();
 
 const defaultTimeoutMs = 500; // 0ms delay - it's super fast.
 
 [
-    ['get ', '/', {message: 'ready'}],
-    ['post', '/DBLocking', true],
-    ['get ', '/Licences', require('./data/Licences/all.json')],
-].map(function (item) {
-    var httpMethod = item[0].trim();
-    var url = item[1];
-    var response = item[2] || null;
-    var statusCode = item[3] || 200;
+  ['get ', '/', {message: 'ready'}],
+  ['post', '/DBLocking', true],
+  ['get ', '/Licences', require('./data/Licences/all.json')],
+].map((item) => {
+  const [method, url, response = null, statusCode = 200] = item;
 
-    router[httpMethod](url, function (req, res) {
-        if (statusCode === 200) {
-            setTimeout(function () {
-                res.json(response);
-            }, defaultTimeoutMs);
-        } else {
-            if (typeof response !== 'undefined') {
-                res.status(statusCode).send(response);
-            } else {
-                res.sendStatus(statusCode);
-            }
-        }
-    });
+  router[method.trim()](url, (req, res) => {
+    if (statusCode === 200) {
+      setTimeout(() => res.json(response), defaultTimeoutMs);
+    } else {
+      return res.status(statusCode).send(response);
+    }
+  });
 });
 
 module.exports = router;
