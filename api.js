@@ -4,8 +4,8 @@ const defaultTimeoutMs = 500; // 0ms delay - it's super fast.
 
 [
   ['get ', '/', {message: 'ready'}],
-  ['post', '/DBLocking', true],
-  ['get ', '/Licences', require('./data/Licences/all.json')],
+  ['post', '/update', true],
+  ['get ', '/example', require('./data/example/response.json')],
 ].map((item) => {
   const [method, url, response = null, statusCode = 200] = item;
 
